@@ -16,7 +16,7 @@ function App() {
       <Route exact path = '/' component = {HomePage} />
       <Route path = '/login' component = {LogIn} />
       <Route path = '/signup' component = {SignUp} />
-      <PrivateRoute path = 'dashboard' component = {ChefDashboard} />
+      <PrivateRoute path = '/dashboard' component = {ChefDashboard} />
     </div>
 
   </Router>

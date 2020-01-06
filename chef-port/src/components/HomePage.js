@@ -3,8 +3,18 @@ import {Link} from 'react-router-dom';
 
 //components
 import NavBar from './NavBar';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const HomePage = () => {
+
+    axiosWithAuth()
+        .get('/user/recipes')
+        .then(res => {
+            console.log('res from home page', res)
+        })
+        .catch(err => {
+            console.log('err in homepage', err)
+        })
 
     return(
         <div>

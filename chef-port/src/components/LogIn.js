@@ -1,40 +1,33 @@
 import React, {useState} from 'react';
 import {Button, Form} from 'semantic-ui-react';
+import {connect} from 'react-redux';
 //utils
 import {axiosWithAuth} from '../utils/axiosWithAuth';
+
+import {login} from '../actions';
 
 const initState = {
     username: '',
     password: ''
 }
 
-const LogIn = () => {
-    const [user, setUser] = useState(initState);
+const LogIn = ({login, history}) => {
+    const [user, setUser] = useState({...initState});
 
     const changeHandler = e => {
         e.preventDefault();
         let value = e.target.value
-        setUser({
-            ...user,
-            [e.target.name]: value
-        })
+        setUser({...user, [e.target.name] : value })
     }
 
-    const submit = e => {
+    const submitHandler = e => {
         e.preventDefault();
-        axiosWithAuth()
-            .post('/user/login', user)
-            .then(res => {
-                console.log('from login submit', res)
-            })
-            .catch(err => {
-                console.log('something wrong in submit')
-            })
+        login(user, history)
     }
 
     return(
         <div>
-            <Form onSubmit = {submit}>
+            <Form onSubmit = {submitHandler}>
                 <Form.Field>
                     <label>Username</label>
                     <input type = 'text' placeholder = 'Username' onChange = {changeHandler} name = 'username' />
@@ -49,4 +42,4 @@ const LogIn = () => {
     )
 }
 
-export default LogIn;
+export default connect(null, {login})(LogIn);
