@@ -7,6 +7,7 @@ import HomePage from './components/HomePage';
 import PrivateRoute from './components/PrivateRoute';
 import ChefDashboard from './components/ChefDashboard';
 import LogIn from './components/LogIn';
+import SignUp from './components/SignUp';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
     <div className="App">
       <Route exact path = '/' component = {HomePage} />
       <Route path = '/login' component = {LogIn} />
+      <Route path = '/signup' component = {SignUp} />
       <PrivateRoute path = 'dashboard' component = {ChefDashboard} />
     </div>
 
