@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {Card, Image} from 'semantic-ui-react';
 //components
 import NavBar from './NavBar';
 
 //actions
-import {getAllRecipes} from '../actions';
+import {getAllRecipes, getOneRecipe} from '../actions';
 
 const HomePage = props => {
     console.log(props);
@@ -20,8 +20,8 @@ const HomePage = props => {
             <h1>Hello There</h1>
             <div className = 'recipes'>
                 {props.recipes && props.recipes.map(r => (
-                    <Card key = {r.id} >
-                        <Image src = {r.image_url} wrapped ui = {false} />
+                    <Card key = {r.id} onClick = {getOneRecipe}>
+                        <Image src = {r.image_url} />
                         <Card.Content>
                             <Card.Header>{r.name}</Card.Header>
                             <Card.Description>{r.chef}</Card.Description>

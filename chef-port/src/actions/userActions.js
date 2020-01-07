@@ -15,6 +15,11 @@ export const FETCH_ALL_START = 'FETCH_ALL_START';
 export const FETCH_ALL_SUCCESS = 'FETCH_ALL_SUCCESS';
 export const FETCH_ALL_FAILURE = 'FETCH_ALL_FAILURE';
 
+//fetching individual recipes
+export const FETCH_INDIVIDUAL_RECIPE_START = 'FETCH_INDIVIDUAL_RECIPE_START';
+export const FETCH_INDIVIDUAL_RECIPE_SUCCESS = 'FETCH_INDIVIDUAL_RECIPE_SUCCESS';
+export const FETCH_INDIVIDUAL_RECIPE_FAILURE = 'FETCH_INDIVIDUAL_RECIPE_FAILURE';
+
 export const login = (userInfo, history) => dispatch => {
     dispatch({type: LOGIN_START})
     axiosWithAuth()
@@ -52,5 +57,20 @@ export const getAllRecipes = () => dispatch => {
         .catch(err => {
             console.log('err from get all recipes', err)
             dispatch({type: FETCH_ALL_FAILURE, payload: err.res})
+        })
+}
+
+export const getOneRecipe = (id, history) => dispatch => {
+    dispatch({type: FETCH_INDIVIDUAL_RECIPE_START})
+    axiosWithAuth()
+        .get(`/recipes/${id}`)
+        .then(res => {
+            console.log('res from one recipe', res)
+            dispatch({type: FETCH_INDIVIDUAL_RECIPE_SUCCESS, payload: res.data})
+            history.push(`/recipe/${id}`)
+        })
+        .catch(err => {
+            console.log('err from one recipe', err)
+            dispatch({type: FETCH_INDIVIDUAL_RECIPE_FAILURE, payload: err.res})
         })
 }
