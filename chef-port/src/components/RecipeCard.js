@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
-
+import {Card, Image} from 'semantic-ui-react';
+import {connect} from 'react-redux';
 import NavBar from './NavBar';
 
 import {getOneRecipe} from '../actions';
@@ -36,4 +37,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {getOneRecipes})(RecipeCard);
+export default connect(mapStateToProps, {getOneRecipe})(RecipeCard);
