@@ -35,6 +35,11 @@ export const DELETE_RECIPE_START = 'DELETE_RECIPE_START';
 export const DELETE_RECIPE_SUCCESS = 'DELETE_RECIPE_SUCCESS';
 export const DELETE_RECIPE_FAILURE = 'DELETE_RECIPE_FAILURE';
 
+//editing a chef's recipe
+export const EDIT_RECIPE_START = 'EDIT_RECIPE_START';
+export const EDIT_RECIPE_SUCCESS = 'EDIT_RECIPE_SUCCESS';
+export const EDIT_RECIPE_FAILURE = 'EDIT_RECIPE_FAILURE';
+
 export const login = (userInfo, history) => dispatch => {
     dispatch({type: LOGIN_START})
     axiosWithAuth()
@@ -130,5 +135,17 @@ export const deleteRecipe = (id) => dispatch => {
         .catch(err => {
             console.log('delete err', err)
             dispatch({type: DELETE_RECIPE_FAILURE, payload: err.res})
+        })
+}
+
+export const editRecipe = (id, history) => dispatch => {
+    dispatch({type: EDIT_RECIPE_START})
+    axiosWithAuth()
+        .post(`/chef/recipes/${id}`, id)
+        .then(res => {
+            console.log('res from edit action', res)
+        })
+        .catch(err => {
+            console.log('err from edit action', err)
         })
 }

@@ -8,8 +8,6 @@ import NavBar from './NavBar';
 //actions
 import {getChefRecipes, deleteRecipe} from '../actions';
 
-import {axiosWithAuth} from '../utils/axiosWithAuth';
-
 const ChefDashboard = props => {
     console.log('props from chef dashboard', props.chef_recipes)
 
@@ -22,9 +20,10 @@ const ChefDashboard = props => {
         props.history.push('/addrecipe')
     }
 
-    const editingRoute = e => {
-        e.preventDefault();
-        props.history.push('/editrecipe')
+    const editingRoute = (id) => {
+        // e.preventDefault();
+        props.history.push(`/editrecipe/${id}`)
+        console.log(id)
     }
 
     return(
@@ -49,7 +48,7 @@ const ChefDashboard = props => {
                                 <p>{cr.description}</p>
                             </Card.Content>
                             <Card.Content>
-                                <Button>Edit</Button>
+                                <Button onClick = {() => editingRoute(cr.id)} >Edit</Button>
                                 <Button onClick ={() => props.deleteRecipe(cr.id)}>Delete</Button>
                                 
                             </Card.Content>

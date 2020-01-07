@@ -23,7 +23,7 @@ import {
 const initState = {
     error: null,
     isFetching: false,
-    currentUser: {},
+    currentUser: {}, 
     recipes: [],
     recipe: {},
     chef_recipes: []
