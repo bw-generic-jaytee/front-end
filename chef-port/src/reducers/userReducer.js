@@ -127,6 +127,7 @@ export const reducer = (state = initState, {type , payload}) => {
                 isFetching: false,
                 error: payload
             }
+        
         default: 
             return state;
     }

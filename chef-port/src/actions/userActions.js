@@ -25,6 +25,11 @@ export const FETCH_CHEF_RECIPES_START = 'FETCH_CHEF_RECIPES_START';
 export const FETCH_CHEF_RECIPES_SUCCESS = 'FETCH_ CHEF_RECIPES_SUCCESS';
 export const FETCH_CHEF_RECIPES_FAILURE = 'FETCH_CHEF_RECIPES_FAILURE';
 
+//creating new chef's recipe
+export const CREATE_RECIPE_START = 'CREATE_RECIPE_START';
+export const CREATE_RECIPE_SUCCESS = 'CREATE_RECIPE_SUCCESS';
+export const CREATE_RECIPE_FAILURE = 'CREATE_RECIPE_FAILURE';
+
 export const login = (userInfo, history) => dispatch => {
     dispatch({type: LOGIN_START})
     axiosWithAuth()
@@ -91,5 +96,17 @@ export const getChefRecipes = (chef) => dispatch => {
         .catch(err => {
             console.log('err from chefs recipes', err)
             dispatch({type: FETCH_CHEF_RECIPES_FAILURE, payload: err.res})
+        })
+}
+
+export const createRecipe = (chef) => dispatch => {
+    dispatch({type: CREATE_RECIPE_START})
+    axiosWithAuth()
+        .post('/chef/recipes', chef)
+        .then(res => {
+            console.log('res from create recipe', res)
+        })
+        .catch(err => {
+            console.log('err from create recipe', err)
         })
 }
