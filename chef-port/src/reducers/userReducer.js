@@ -7,7 +7,10 @@ import {
     SIGNUP_FAILURE,
     FETCH_ALL_START,
     FETCH_ALL_SUCCESS,
-    FETCH_ALL_FAILURE
+    FETCH_ALL_FAILURE,
+    FETCH_INDIVIDUAL_RECIPE_START,
+    FETCH_INDIVIDUAL_RECIPE_SUCCESS,
+    FETCH_INDIVIDUAL_RECIPE_FAILURE 
 
 } from "../actions";
 
@@ -15,7 +18,8 @@ const initState = {
     error: null,
     isFetching: false,
     currentUser: {},
-    recipes: []
+    recipes: [],
+    recipe: {}
 }
 
 export const reducer = (state = initState, {type , payload}) => {
@@ -76,6 +80,25 @@ export const reducer = (state = initState, {type , payload}) => {
                 error: ''
             }
         case FETCH_ALL_FAILURE: 
+            return {
+                ...state,
+                isFetching: false,
+                error: payload
+            }
+        case FETCH_INDIVIDUAL_RECIPE_START: 
+            return {
+                ...state,
+                isFetching: false, 
+                error: payload
+            }
+        case FETCH_INDIVIDUAL_RECIPE_SUCCESS: 
+            return {
+                ...state,
+                recipe: payload,
+                isFetching: false,
+                error: ''
+            }
+        case FETCH_INDIVIDUAL_RECIPE_FAILURE: 
             return {
                 ...state,
                 isFetching: false,
