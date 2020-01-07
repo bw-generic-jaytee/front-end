@@ -9,6 +9,8 @@ import ChefDashboard from './components/ChefDashboard';
 import LogIn from './components/LogIn';
 import SignUp from './components/SignUp';
 import RecipeCard from './components/RecipeCard';
+import NewRecipeForm from './components/NewRecipeForm';
+import EditRecipe from './components/EditRecipe';
 
 function App() {
   return (
@@ -18,7 +20,9 @@ function App() {
       <Route path = '/recipe/:id' component = {RecipeCard} />
       <Route path = '/login' component = {LogIn} />
       <Route path = '/signup' component = {SignUp} />
-      <PrivateRoute path = '/dashboard' component = {ChefDashboard} />
+      <PrivateRoute exact path = '/dashboard' component = {ChefDashboard} />
+      <PrivateRoute path = '/addrecipe' component = {NewRecipeForm} />
+      <PrivateRoute path = '/editrecipe' component = {EditRecipe} />
     </div>
 
   </Router>

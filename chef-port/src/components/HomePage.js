@@ -14,6 +14,7 @@ const HomePage = props => {
         props.getAllRecipes();
     }, [props.getAllRecipes])
 
+    
     return(
         <div className = 'home'>
             <NavBar />

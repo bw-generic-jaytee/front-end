@@ -30,6 +30,11 @@ export const CREATE_RECIPE_START = 'CREATE_RECIPE_START';
 export const CREATE_RECIPE_SUCCESS = 'CREATE_RECIPE_SUCCESS';
 export const CREATE_RECIPE_FAILURE = 'CREATE_RECIPE_FAILURE';
 
+//deleting a chef's recipe
+export const DELETE_RECIPE_START = 'DELETE_RECIPE_START';
+export const DELETE_RECIPE_SUCCESS = 'DELETE_RECIPE_SUCCESS';
+export const DELETE_RECIPE_FAILURE = 'DELETE_RECIPE_FAILURE';
+
 export const login = (userInfo, history) => dispatch => {
     dispatch({type: LOGIN_START})
     axiosWithAuth()
@@ -61,11 +66,11 @@ export const getAllRecipes = () => dispatch => {
     axiosWithAuth()
         .get('/user/recipes')
         .then(res => {
-            console.log('res from get all recipes', res)
+            // console.log('res from get all recipes', res)
             dispatch({type: FETCH_ALL_SUCCESS, payload: res.data})
         })
         .catch(err => {
-            console.log('err from get all recipes', err)
+            // console.log('err from get all recipes', err)
             dispatch({type: FETCH_ALL_FAILURE, payload: err.res})
         })
 }
@@ -90,23 +95,40 @@ export const getChefRecipes = (chef) => dispatch => {
     axiosWithAuth()
         .get(`/chef/recipes`)
         .then(res => {
-            console.log('res from chefs recipes', res)
+            // console.log('res from chefs recipes', res)
             dispatch({type: FETCH_CHEF_RECIPES_SUCCESS, payload: res.data})
         })
         .catch(err => {
-            console.log('err from chefs recipes', err)
+            // console.log('err from chefs recipes', err)
             dispatch({type: FETCH_CHEF_RECIPES_FAILURE, payload: err.res})
         })
 }
 
-export const createRecipe = (chef) => dispatch => {
+export const createRecipe = (chef, history) => dispatch => {
     dispatch({type: CREATE_RECIPE_START})
     axiosWithAuth()
         .post('/chef/recipes', chef)
         .then(res => {
-            console.log('res from create recipe', res)
+            // console.log('res from create recipe', res)
+            dispatch({type: CREATE_RECIPE_SUCCESS, payload: res.data})
+            history.push('/dashboard')
         })
         .catch(err => {
-            console.log('err from create recipe', err)
+            // console.log('err from create recipe', err)
+            dispatch({type: CREATE_RECIPE_FAILURE, payload: err.res})
+        })
+}
+
+export const deleteRecipe = (id) => dispatch => {
+    dispatch({type: DELETE_RECIPE_START})
+    axiosWithAuth()
+        .delete(`/chef/recipes/${id}`)
+        .then(res => {
+            console.log('delet res', res)
+            dispatch({type: DELETE_RECIPE_SUCCESS, payload: res.data})
+        })
+        .catch(err => {
+            console.log('delete err', err)
+            dispatch({type: DELETE_RECIPE_FAILURE, payload: err.res})
         })
 }

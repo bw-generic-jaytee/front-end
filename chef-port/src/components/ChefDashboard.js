@@ -6,14 +6,26 @@ import {Card, Image, Button} from 'semantic-ui-react';
 import NavBar from './NavBar';
 
 //actions
-import {getChefRecipes} from '../actions';
+import {getChefRecipes, deleteRecipe} from '../actions';
+
+import {axiosWithAuth} from '../utils/axiosWithAuth';
 
 const ChefDashboard = props => {
-    console.log('props from chef dashboard', props)
+    console.log('props from chef dashboard', props.chef_recipes)
 
     useEffect(() => {
         props.getChefRecipes();
     }, [props.getChefRecipes])
+
+    const addingRoute = e => {
+        e.preventDefault();
+        props.history.push('/addrecipe')
+    }
+
+    const editingRoute = e => {
+        e.preventDefault();
+        props.history.push('/editrecipe')
+    }
 
     return(
         <div>
@@ -24,7 +36,7 @@ const ChefDashboard = props => {
             
             <div>
                 <h2>RECIPES</h2>
-                <Button>New Recipe</Button>
+                <Button onClick = {addingRoute}>New Recipe</Button>
                 <div className = 'recipes'>    
                     {props.chef_recipes && props.chef_recipes.map(cr => (
                         <Card key = {cr.id}>
@@ -38,7 +50,8 @@ const ChefDashboard = props => {
                             </Card.Content>
                             <Card.Content>
                                 <Button>Edit</Button>
-                                <Button>Delete</Button>
+                                <Button onClick ={() => props.deleteRecipe(cr.id)}>Delete</Button>
+                                
                             </Card.Content>
                         </Card>
                     ))}
@@ -50,8 +63,9 @@ const ChefDashboard = props => {
 
 const mapStateToProps = state => {
     return {
-        chef_recipes: state.chef_recipes
+        chef_recipes: state.chef_recipes,
+        recipe: state.recipe
     }
 }
 
-export default connect(mapStateToProps, {getChefRecipes})(ChefDashboard);
+export default connect(mapStateToProps, {getChefRecipes, deleteRecipe})(ChefDashboard);

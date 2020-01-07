@@ -13,7 +13,10 @@ import {
     FETCH_INDIVIDUAL_RECIPE_FAILURE,
     FETCH_CHEF_RECIPES_START,
     FETCH_CHEF_RECIPES_SUCCESS,
-    FETCH_CHEF_RECIPES_FAILURE 
+    FETCH_CHEF_RECIPES_FAILURE,
+    DELETE_RECIPE_START,
+    DELETE_RECIPE_SUCCESS,
+    DELETE_RECIPE_FAILURE 
 
 } from "../actions";
 
@@ -127,7 +130,25 @@ export const reducer = (state = initState, {type , payload}) => {
                 isFetching: false,
                 error: payload
             }
-        
+        case DELETE_RECIPE_START: 
+            return {
+                ...state,
+                isFetching: true,
+                error: null
+            }
+        case DELETE_RECIPE_SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                chef_recipes: payload,
+                error: ''
+            }
+        case DELETE_RECIPE_FAILURE: 
+            return {
+                ...state,
+                isFetching: false,
+                error: payload
+            }
         default: 
             return state;
     }
