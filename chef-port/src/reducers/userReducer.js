@@ -10,7 +10,10 @@ import {
     FETCH_ALL_FAILURE,
     FETCH_INDIVIDUAL_RECIPE_START,
     FETCH_INDIVIDUAL_RECIPE_SUCCESS,
-    FETCH_INDIVIDUAL_RECIPE_FAILURE 
+    FETCH_INDIVIDUAL_RECIPE_FAILURE,
+    FETCH_CHEF_RECIPES_START,
+    FETCH_CHEF_RECIPES_SUCCESS,
+    FETCH_CHEF_RECIPES_FAILURE 
 
 } from "../actions";
 
@@ -19,7 +22,8 @@ const initState = {
     isFetching: false,
     currentUser: {},
     recipes: [],
-    recipe: {}
+    recipe: {},
+    chef_recipes: []
 }
 
 export const reducer = (state = initState, {type , payload}) => {
@@ -104,6 +108,26 @@ export const reducer = (state = initState, {type , payload}) => {
                 isFetching: false,
                 error: payload
             }
+        case FETCH_CHEF_RECIPES_START: 
+            return {
+                ...state, 
+                isFetching: true,
+                error: null
+            }
+        case FETCH_CHEF_RECIPES_SUCCESS: 
+            return {
+                ...state, 
+                isFetching: false,
+                chef_recipes: payload,
+                error: ''
+            }
+        case FETCH_CHEF_RECIPES_FAILURE: 
+            return {
+                ...state,
+                isFetching: false,
+                error: payload
+            }
+        
         default: 
             return state;
     }
