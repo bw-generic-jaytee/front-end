@@ -1,10 +1,17 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import {Button} from 'semantic-ui-react';
 
 const NavBar = () => {
 
     return(
-        <div>
+        <div className = 'nav'>
             <h1>Chef Portfolio</h1>
+            <div className = 'links'>
+                <Link to = '/login' ><Button>Log In</Button></Link>
+                <Link to = '/signup'><Button>Sign Up</Button></Link>
+            </div>
+            
         </div>
     )
 }

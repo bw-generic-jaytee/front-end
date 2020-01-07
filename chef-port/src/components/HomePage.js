@@ -1,29 +1,45 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-
+import React, {useEffect, useState} from 'react';
+import {connect} from 'react-redux';
+import {Card, Image} from 'semantic-ui-react';
 //components
 import NavBar from './NavBar';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-const HomePage = () => {
+//actions
+import {getAllRecipes} from '../actions';
 
-    axiosWithAuth()
-        .get('/user/recipes')
-        .then(res => {
-            console.log('res from home page', res)
-        })
-        .catch(err => {
-            console.log('err in homepage', err)
-        })
+const HomePage = props => {
+    console.log(props);
+
+    useEffect(() => {
+        props.getAllRecipes();
+    }, [props.getAllRecipes])
 
     return(
-        <div>
+        <div className = 'home'>
             <NavBar />
             <h1>Hello There</h1>
-            <Link to = '/login' ><button>Log In</button></Link>
-            <Link to = '/signup'><button>Sign Up</button></Link>
+            <div className = 'recipes'>
+                {props.recipes && props.recipes.map(r => (
+                    <Card key = {r.id} >
+                        <Image src = {r.image_url} wrapped ui = {false} />
+                        <Card.Content>
+                            <Card.Header>{r.name}</Card.Header>
+                            <Card.Description>{r.chef}</Card.Description>
+                        </Card.Content>
+                        <Card.Content extra>
+                            <p>{r.description}</p>
+                        </Card.Content>
+                    </Card>
+                ))}
+            </div>
         </div>
     )
 }
 
-export default HomePage;
+const mapStateToProps = state => {
+    return {
+        recipes: state.recipes
+    }
+}
+
+export default connect(mapStateToProps, {getAllRecipes})(HomePage);

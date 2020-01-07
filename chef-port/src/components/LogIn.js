@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Form} from 'semantic-ui-react';
 import {connect} from 'react-redux';
-//utils
-import {axiosWithAuth} from '../utils/axiosWithAuth';
 
 import {login} from '../actions';
 
