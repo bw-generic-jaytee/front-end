@@ -20,6 +20,11 @@ export const FETCH_INDIVIDUAL_RECIPE_START = 'FETCH_INDIVIDUAL_RECIPE_START';
 export const FETCH_INDIVIDUAL_RECIPE_SUCCESS = 'FETCH_INDIVIDUAL_RECIPE_SUCCESS';
 export const FETCH_INDIVIDUAL_RECIPE_FAILURE = 'FETCH_INDIVIDUAL_RECIPE_FAILURE';
 
+//fetching a chef's recipes
+export const FETCH_CHEF_RECIPES_START = 'FETCH_CHEF_RECIPES_START';
+export const FETCH_CHEF_RECIPES_SUCCESS = 'FETCH_ CHEF_RECIPES_SUCCESS';
+export const FETCH_CHEF_RECIPES_FAILURE = 'FETCH_CHEF_RECIPES_FAILURE';
+
 export const login = (userInfo, history) => dispatch => {
     dispatch({type: LOGIN_START})
     axiosWithAuth()
@@ -72,5 +77,19 @@ export const getOneRecipe = (id, history) => dispatch => {
         .catch(err => {
             console.log('err from one recipe', err)
             dispatch({type: FETCH_INDIVIDUAL_RECIPE_FAILURE, payload: err.res})
+        })
+}
+
+export const getChefRecipes = (chef) => dispatch => {
+    dispatch({type: FETCH_CHEF_RECIPES_START})
+    axiosWithAuth()
+        .get(`/chef/recipes`)
+        .then(res => {
+            console.log('res from chefs recipes', res)
+            dispatch({type: FETCH_CHEF_RECIPES_SUCCESS, payload: res.data})
+        })
+        .catch(err => {
+            console.log('err from chefs recipes', err)
+            dispatch({type: FETCH_CHEF_RECIPES_FAILURE, payload: err.res})
         })
 }
