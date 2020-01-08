@@ -4,40 +4,35 @@ import {Form, Button} from 'semantic-ui-react';
 
 import NavBar from './NavBar';
 
-import {editRecipe} from '../actions';
+import {editRecipe, getOne} from '../actions';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-const EditRecipe = props => {
-    console.log(props.chef_recipes);
-    const initRecipe = {
-        name: '',
-        description: '',
-        image_url: '',
-        meal_type: '',
-        ingredients: '',
-        instructions: ''
-    }
+const initState = {
+    name: '',
+    description: '',
+    image_url: '',
+    meal_type: '',
+    ingredients: '',
+    instructions: ''
+}
 
-    const [form, setForm] = useState({...initRecipe});
+const EditRecipe = (props) => {
+    console.log(props)
+    const [formValues, setFormValues] = useState({...initState})
 
     useEffect(() => {
-        const recipeToEdit = props.chef_recipes.find(c => `${c.id}` === props.match.params.id )
-        if (recipeToEdit) {
-            setForm(recipeToEdit)
-        }
-    }, props.chef_recipes, props.match.params.id)
-
-    if(!props.chef_recipes.length || !form) {
-        return <h2>Loading Recipe Data</h2>
-    }
+        props.getOne(props.id);
+    }, [props.getOne])
 
     const changeHandler = e => {
         e.preventDefault();
         let value = e.target.value;
-        setForm({...form, [e.target.name] : value})
+        setFormValues({...formValues, [e.target.name] : value})
     }
 
     const submitHandler = e => {
         e.preventDefault();
+        editRecipe(formValues, props.history);
     }
 
     return(
@@ -46,7 +41,7 @@ const EditRecipe = props => {
             <Form onSubmit = {submitHandler}>
                 <Form.Field>
                     <label>Name:</label>
-                    <input type = 'text' placeholder = 'name' name = 'name' onChange = {changeHandler} value = {form.name} />
+                    <input type = 'text' placeholder = 'name' name = 'name' onChange = {changeHandler}  />
                 </Form.Field>
                 <Form.Field>
                     <label>Description:</label>
@@ -76,8 +71,9 @@ const EditRecipe = props => {
 
 const mapStateToProps = state => {
     return {
-        chef_recipes: state.chef_recipes
+        chef: state.chef_recipes,
+        recipe: state.recipe
     }
 }
 
-export default connect(mapStateToProps, {editRecipe})(EditRecipe);
+export default connect(mapStateToProps, {editRecipe, getOne})(EditRecipe);

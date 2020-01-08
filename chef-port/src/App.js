@@ -22,7 +22,7 @@ function App() {
       <Route path = '/signup' component = {SignUp} />
       <PrivateRoute exact path = '/dashboard' component = {ChefDashboard} />
       <PrivateRoute path = '/addrecipe' component = {NewRecipeForm} />
-      <PrivateRoute path = '/editrecipe' component = {EditRecipe} />
+      <PrivateRoute path = '/editrecipe/:id' component = {EditRecipe} />
     </div>
 
   </Router>

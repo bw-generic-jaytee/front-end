@@ -40,6 +40,11 @@ export const EDIT_RECIPE_START = 'EDIT_RECIPE_START';
 export const EDIT_RECIPE_SUCCESS = 'EDIT_RECIPE_SUCCESS';
 export const EDIT_RECIPE_FAILURE = 'EDIT_RECIPE_FAILURE';
 
+//fetching one recipe from chef (for editing)
+export const GET_ONE_START = 'GET_ONE_START';
+export const GET_ONE_SUCCESS = 'GET_ONE_SUCCESS';
+export const GET_ONE_FAILURE = 'GET_ONE_FAILURE';
+
 export const login = (userInfo, history) => dispatch => {
     dispatch({type: LOGIN_START})
     axiosWithAuth()
@@ -138,14 +143,29 @@ export const deleteRecipe = (id) => dispatch => {
         })
 }
 
-export const editRecipe = (id, history) => dispatch => {
+export const editRecipe = (id, formValues, history) => dispatch => {
     dispatch({type: EDIT_RECIPE_START})
     axiosWithAuth()
-        .post(`/chef/recipes/${id}`, id)
+        .put(`/chef/recipes/${id}`, formValues)
         .then(res => {
             console.log('res from edit action', res)
+            history.push('/dashboard')
         })
         .catch(err => {
             console.log('err from edit action', err)
+        })
+}
+
+export const getOne = (id, history) => dispatch => {
+    dispatch({type: GET_ONE_START})
+    axiosWithAuth()
+        .get(`/recipes/${id}`)
+        .then(res => {
+            console.log('res from get one', res)
+            dispatch({type: GET_ONE_SUCCESS, payload: res.data})
+        })
+        .catch(err => {
+            console.log('err from get one', err)
+            dispatch({type: GET_ONE_FAILURE, payload: err.res})
         })
 }
