@@ -144,7 +144,7 @@ export const deleteRecipe = (id, history) => dispatch => {
         })
 }
 
-export const editRecipe = (chef, id, formValues, history) => dispatch => {
+export const editRecipe = (formValues, id, history) => dispatch => {
     dispatch({type: EDIT_RECIPE_START})
     axiosWithAuth()
         .put(`/chef/recipes/${id}`, formValues)
