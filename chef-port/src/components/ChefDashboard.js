@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom';
 import NavBar from './NavBar';
 
 //actions
-import {getChefRecipes, deleteRecipe, getOne} from '../actions';
+import {getChefRecipes, deleteRecipe} from '../actions';
 
 const ChefDashboard = props => {
     console.log('props from chef dashboard', props.chef_recipes)
@@ -35,6 +35,10 @@ const ChefDashboard = props => {
         setRecipeArr(props.deleteRecipe);
     }
 
+    const moreInfo = (id) => {
+        props.history.push(`/dashboard/recipe/${id}`)
+    }
+
     return(
         <div>
             <NavBar />
@@ -57,12 +61,11 @@ const ChefDashboard = props => {
                                 <p>{cr.description}</p>
                             </Card.Content>
                             <Card.Content>
-                                {/* <Link to = {`/editrecipe/${cr.id}`} ><Button>Edit</Button></Link> */}
-                                <Button onClick = {() => editingRoute(cr.id)}>Edit</Button>
-                                <Button onClick = {(e) => del(cr.id)}>Delete</Button>
-                                <Button onClick ={() => props.deleteRecipe(cr.id)}>Delete</Button>
                                 
+                                {/* <Button onClick = {() => editingRoute(cr.id)}>Edit</Button>
+                                <Button onClick ={() => props.deleteRecipe(cr.id)}>Delete</Button>  */}
                             </Card.Content>
+                            <Button onClick = {() => moreInfo(cr.id)}>More Info</Button>
                         </Card>
                     ))}
                 </div>
@@ -78,4 +81,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {getChefRecipes, deleteRecipe, getOne})(ChefDashboard);
+export default connect(mapStateToProps, {getChefRecipes, deleteRecipe})(ChefDashboard);

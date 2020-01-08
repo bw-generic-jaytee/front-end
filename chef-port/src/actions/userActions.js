@@ -88,7 +88,7 @@ export const getAllRecipes = () => dispatch => {
 export const getOneRecipe = (id, history) => dispatch => {
     dispatch({type: FETCH_INDIVIDUAL_RECIPE_START})
     axiosWithAuth()
-        .get(`/recipes/${id}`)
+        .get(`/user/recipes/${id}`)
         .then(res => {
             console.log('res from one recipe', res)
             dispatch({type: FETCH_INDIVIDUAL_RECIPE_SUCCESS, payload: res.data})
@@ -129,13 +129,14 @@ export const createRecipe = (chef, history) => dispatch => {
         })
 }
 
-export const deleteRecipe = (id) => dispatch => {
+export const deleteRecipe = (id, history) => dispatch => {
     dispatch({type: DELETE_RECIPE_START})
     axiosWithAuth()
         .delete(`/chef/recipes/${id}`)
         .then(res => {
             console.log('delet res', res)
             dispatch({type: DELETE_RECIPE_SUCCESS, payload: res.data})
+            history.push('/dashboard')
         })
         .catch(err => {
             console.log('delete err', err)
@@ -143,7 +144,7 @@ export const deleteRecipe = (id) => dispatch => {
         })
 }
 
-export const editRecipe = (id, formValues, history) => dispatch => {
+export const editRecipe = (chef, id, formValues, history) => dispatch => {
     dispatch({type: EDIT_RECIPE_START})
     axiosWithAuth()
         .put(`/chef/recipes/${id}`, formValues)
@@ -156,16 +157,3 @@ export const editRecipe = (id, formValues, history) => dispatch => {
         })
 }
 
-export const getOne = (id, history) => dispatch => {
-    dispatch({type: GET_ONE_START})
-    axiosWithAuth()
-        .get(`/recipes/${id}`)
-        .then(res => {
-            console.log('res from get one', res)
-            dispatch({type: GET_ONE_SUCCESS, payload: res.data})
-        })
-        .catch(err => {
-            console.log('err from get one', err)
-            dispatch({type: GET_ONE_FAILURE, payload: err.res})
-        })
-}

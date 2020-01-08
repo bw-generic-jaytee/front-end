@@ -4,7 +4,7 @@ import {Form, Button} from 'semantic-ui-react';
 
 import NavBar from './NavBar';
 
-import {editRecipe, getOne} from '../actions';
+import {editRecipe} from '../actions';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const initState = {
@@ -19,10 +19,6 @@ const initState = {
 const EditRecipe = (props) => {
     console.log(props)
     const [formValues, setFormValues] = useState({...initState})
-
-    useEffect(() => {
-        props.getOne(props.id);
-    }, [props.getOne])
 
     const changeHandler = e => {
         e.preventDefault();
@@ -76,4 +72,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {editRecipe, getOne})(EditRecipe);
+export default connect(mapStateToProps, {editRecipe})(EditRecipe);
