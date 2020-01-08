@@ -14,14 +14,14 @@ const HomePage = props => {
         props.getAllRecipes();
     }, [props.getAllRecipes])
 
-    
     return(
         <div className = 'home'>
             <NavBar />
             <h1>Hello There</h1>
             <div className = 'recipes'>
                 {props.recipes && props.recipes.map(r => (
-                    <Card key = {r.id} onClick = {getOneRecipe}>
+                    
+                    <Card key = {r.id}>
                         <Image src = {r.image_url} />
                         <Card.Content>
                             <Card.Header>{r.name}</Card.Header>
@@ -31,6 +31,7 @@ const HomePage = props => {
                             <p>{r.description}</p>
                         </Card.Content>
                     </Card>
+                    
                 ))}
             </div>
         </div>
