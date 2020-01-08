@@ -11,7 +11,7 @@ import {getChefRecipes, deleteRecipe} from '../actions';
 
 const ChefDashboard = props => {
     console.log('props from chef dashboard', props.chef_recipes)
-    console.log('one recipe', props.recipe)
+    console.log('one recipe', props)
 
     useEffect(() => {
         props.getChefRecipes()
@@ -71,7 +71,8 @@ const ChefDashboard = props => {
 const mapStateToProps = state => {
     return {
         chef_recipes: state.chef_recipes,
-        recipe: state.recipe
+        recipe: state.recipe,
+        currentUser: state.currentUser
     }
 }
 

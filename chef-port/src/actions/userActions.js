@@ -64,11 +64,13 @@ export const signup = (userInfo, history) => dispatch => {
         .post('/user/register', userInfo)
         .then(res => {
             // console.log('res from signup action', res)
-            localStorage.setItem('token', res.data.token)
-            dispatch({type: SIGNUP_SUCCESS, payload: res.data})
+            // localStorage.setItem('token', res.data.token)
+            dispatch({type: SIGNUP_SUCCESS, payload: res})
             history.push('/login')
         })
-        .catch((err) => dispatch({type: SIGNUP_FAILURE}))
+        .catch(err => {
+            dispatch({type: SIGNUP_FAILURE})
+        })
 }
 
 export const getAllRecipes = () => dispatch => {

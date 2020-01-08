@@ -40,4 +40,12 @@ const LogIn = ({login, history}) => {
     )
 }
 
-export default connect(null, {login})(LogIn);
+const mapStateToProps = state => {
+    return {
+        error: state.error,
+        currentUser: state.currentUser
+    }
+    
+}
+
+export default connect(mapStateToProps, {login})(LogIn);
