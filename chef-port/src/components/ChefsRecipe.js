@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {connect} from 'react-redux';
 import {Button} from 'semantic-ui-react';
 
@@ -6,14 +6,28 @@ import NavBar from './NavBar';
 
 import {getOneRecipe, deleteRecipe} from '../actions';
 
+
+
 const ChefsRecipe = props => {
-    
+    const [editing, setEditing] = useState(false);
+    // const [editedRecipe, setEditedRecipe] = useState({initState})
+
     useEffect(() => {
         props.getOneRecipe(props.match.params.id);
     }, [props.getOneRecipe])
 
 
+    async function del(id) {
+        // setTimeout(() => {
+            await props.deleteRecipe(id, props.history)
+            // props.history.push('/dashboard')
+        // }, 700)
+    }
     
+    const editingRoute = (id) => {
+        props.history.push(`/editrecipe/${id}`)
+    }
+
     return(
         <div>
             <NavBar />
@@ -24,7 +38,9 @@ const ChefsRecipe = props => {
                 <h4>{props.recipe.description}</h4>
                 <h4>{props.recipe.meal_type}</h4>
                 <p>WILL FINISH/FORMAT THIS LATER</p>
-                <Button onClick = {() => deleteRecipe(props.recipe.id)}>Delete</Button>
+                <Button onClick = {() => del(props.recipe.id)}>Delete</Button>
+                <Button onClick = {() => editingRoute(props.recipe.id)} >Edit</Button>
+                
             </div>
         </div>
     )
