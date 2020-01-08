@@ -16,10 +16,7 @@ import {
     FETCH_CHEF_RECIPES_FAILURE,
     DELETE_RECIPE_START,
     DELETE_RECIPE_SUCCESS,
-    DELETE_RECIPE_FAILURE, 
-    GET_ONE_START,
-    GET_ONE_SUCCESS,
-    GET_ONE_FAILURE
+    DELETE_RECIPE_FAILURE
 
 } from "../actions";
 
@@ -131,44 +128,44 @@ export const reducer = (state = initState, {type , payload}) => {
                 isFetching: false,
                 error: payload
             }
-        // case DELETE_RECIPE_START: 
-        //     return {
-        //         ...state,
-        //         isFetching: true,
-        //         error: null
-        //     }
-        // case DELETE_RECIPE_SUCCESS:
-        //     return {
-        //         ...state,
-        //         isFetching: false,
-        //         chef_recipes: payload,
-        //         error: ''
-        //     }
-        // case DELETE_RECIPE_FAILURE: 
-        //     return {
-        //         ...state,
-        //         isFetching: false,
-        //         error: payload
-        //     }
-        case GET_ONE_START: 
+        case DELETE_RECIPE_START: 
             return {
                 ...state,
                 isFetching: true,
-                error: ''
+                error: null
             }
-        case GET_ONE_SUCCESS: 
+        case DELETE_RECIPE_SUCCESS:
             return {
                 ...state,
                 isFetching: false,
-                recipe: payload,
+                chef_recipes: payload,
                 error: ''
             }
-        case GET_ONE_FAILURE: 
-            return{
+        case DELETE_RECIPE_FAILURE: 
+            return {
                 ...state,
                 isFetching: false,
                 error: payload
             }
+        // case GET_ONE_START: 
+        //     return {
+        //         ...state,
+        //         isFetching: true,
+        //         error: ''
+        //     }
+        // case GET_ONE_SUCCESS: 
+        //     return {
+        //         ...state,
+        //         isFetching: false,
+        //         recipe: payload,
+        //         error: ''
+        //     }
+        // case GET_ONE_FAILURE: 
+        //     return{
+        //         ...state,
+        //         isFetching: false,
+        //         error: payload
+        //     }
         default: 
             return state;
     }

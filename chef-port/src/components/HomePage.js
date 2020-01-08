@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-import {Card, Image} from 'semantic-ui-react';
+import {Card, Image, Button} from 'semantic-ui-react';
 //components
 import NavBar from './NavBar';
 
@@ -13,6 +13,10 @@ const HomePage = props => {
     useEffect(() => {
         props.getAllRecipes();
     }, [props.getAllRecipes])
+
+    const moreInfo = (id) => {
+        props.history.push(`/recipe/${id}`)
+    }
 
     return(
         <div className = 'home'>
@@ -30,6 +34,7 @@ const HomePage = props => {
                         <Card.Content extra>
                             <p>{r.description}</p>
                         </Card.Content>
+                        <Button onClick = {() => moreInfo(r.id)}>More Info</Button>
                     </Card>
                     
                 ))}
