@@ -66,7 +66,7 @@ export const signup = (userInfo, history) => dispatch => {
             // console.log('res from signup action', res)
             localStorage.setItem('token', res.data.token)
             dispatch({type: SIGNUP_SUCCESS, payload: res.data})
-            history.push('/dashboard')
+            history.push('/login')
         })
         .catch((err) => dispatch({type: SIGNUP_FAILURE}))
 }
@@ -92,7 +92,7 @@ export const getOneRecipe = (id, history) => dispatch => {
         .then(res => {
             console.log('res from one recipe', res)
             dispatch({type: FETCH_INDIVIDUAL_RECIPE_SUCCESS, payload: res.data})
-            history.push(`/recipe/${id}`)
+            // history.push(`/recipe/${id}`)
         })
         .catch(err => {
             console.log('err from one recipe', err)

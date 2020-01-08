@@ -8,14 +8,14 @@ import {editRecipe} from '../actions';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const initState = {
-    name: '',
+    name:  '',
     description: '',
     image_url: '',
     meal_type: '',
     ingredients: '',
     instructions: ''
 }
-
+ 
 const EditRecipe = (props) => {
     console.log(props)
     const [formValues, setFormValues] = useState({...initState})

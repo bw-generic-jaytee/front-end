@@ -12,28 +12,22 @@ import {getChefRecipes, deleteRecipe} from '../actions';
 const ChefDashboard = props => {
     console.log('props from chef dashboard', props.chef_recipes)
     console.log('one recipe', props.recipe)
-    const [recipeArr, setRecipeArr] = useState([]);
 
     useEffect(() => {
         props.getChefRecipes()
-    }, [props.getChefRecipes])
+    }, [])
 
     const addingRoute = e => {
         e.preventDefault();
         props.history.push('/addrecipe')
     }
     
-    const editingRoute = (id) => {
-        // e.preventDefault();
-        // getOne();
-        props.history.push(`/editrecipe/${id}`);
-        console.log(id)
-    }
-
-    const del = (id) => {
-       
-        setRecipeArr(props.deleteRecipe);
-    }
+    // const editingRoute = (id) => {
+    //     // e.preventDefault();
+    //     // getOne();
+    //     props.history.push(`/editrecipe/${id}`);
+    //     console.log(id)
+    // }
 
     const moreInfo = (id) => {
         props.history.push(`/dashboard/recipe/${id}`)
@@ -50,7 +44,7 @@ const ChefDashboard = props => {
                 <h2>RECIPES</h2>
                 <Button onClick = {addingRoute}>New Recipe</Button>
                 <div className = 'recipes'>    
-                    {props.chef_recipes && props.chef_recipes.map(cr => (
+                    {props.chef_recipes instanceof Array ? props.chef_recipes.map(cr => (
                         <Card key = {cr.id}>
                             <Image src = {cr.image_url} />
                             <Card.Content>
@@ -62,12 +56,12 @@ const ChefDashboard = props => {
                             </Card.Content>
                             <Card.Content>
                                 
-                                {/* <Button onClick = {() => editingRoute(cr.id)}>Edit</Button>
-                                <Button onClick ={() => props.deleteRecipe(cr.id)}>Delete</Button>  */}
+                                {/* <Button onClick = {() => editingRoute(cr.id)}>Edit</Button> */}
+                                {/* <Button onClick ={() => props.deleteRecipe(cr.id)}>Delete</Button>  */}
                             </Card.Content>
                             <Button onClick = {() => moreInfo(cr.id)}>More Info</Button>
                         </Card>
-                    ))}
+                    )): (<h1>Loading</h1>)}
                 </div>
             </div>
         </div>
