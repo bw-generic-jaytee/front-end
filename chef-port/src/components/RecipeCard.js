@@ -12,21 +12,17 @@ const RecipeCard = props => {
     }, [props.getOneRecipe]);
 
     return(
-        <div class="recipeCard">
+        <div class="recipe-page">
             <NavBar />
-            <div className="recipe">
-                <h2>Recipe Card</h2>
-                <Card key = {props.recipe.id} onClick = {getOneRecipe}>
-                    <Image src = {props.recipe.image_url} />
-                    <Card.Content>
-                        <Card.Header>{props.recipe.name}</Card.Header>
-                        <Card.Description>{props.recipe.chef}</Card.Description>
-                    </Card.Content>
-                    <Card.Content extra>
-                        <p>{props.recipe.description}</p>
-                    </Card.Content>
-                </Card>
-            </div>
+            <div className="recipe-container">
+                <h2>{props.recipe.name}</h2>
+                    <img src = {props.recipe.image_url} alt = {props.recipe.name} />
+                    <h3>By: {props.recipe.chef}</h3>
+                    <h4>{props.recipe.description}</h4>
+                    <h4>{props.recipe.meal_type}</h4>
+                    <h4>{props.recipe.ingredients}</h4>
+                    <h4>{props.recipe.instructions}</h4>
+                </div>
         </div>
     )
 }

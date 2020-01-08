@@ -22,7 +22,7 @@ const SignUp = ({signup, history}) => {
     const submitHandler = e => {
         e.preventDefault();
         signup(values, history)
-        console.log(values)
+        // console.log(values)
     }
 
     return(

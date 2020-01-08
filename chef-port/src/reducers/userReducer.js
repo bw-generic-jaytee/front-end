@@ -24,7 +24,8 @@ const initState = {
     error: null,
     isFetching: false,
     recipe: {},
-    chef_recipes: null
+    chef_recipes: null, 
+    currentUser: {}
 }
 
 export const reducer = (state = initState, {type , payload}) => {

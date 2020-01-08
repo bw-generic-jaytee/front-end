@@ -34,6 +34,11 @@ const EditRecipe = (props) => {
         props.editRecipe(formValues, props.recipe.id, props.history);
     }
 
+    const cancelHandler = e => {
+        e.preventDefault();
+        props.history.push('/dashboard')
+    }
+
     console.log(formValues)
 
     return(
@@ -65,6 +70,7 @@ const EditRecipe = (props) => {
                     <input type = 'text' placeholder = 'instructions' name = 'instructions' onChange = {changeHandler} value = {formValues.instructions} />
                 </Form.Field>
                 <Button type = 'submit'>Submit</Button>
+                <Button onClick = {cancelHandler}>Cancel</Button>
             </Form>
         </div>
     )
