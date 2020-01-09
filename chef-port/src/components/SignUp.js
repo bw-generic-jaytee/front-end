@@ -3,9 +3,12 @@ import {Button, Form} from 'semantic-ui-react';
 import {connect} from 'react-redux';
 
 import {signup} from '../actions';
+import NavBar from './NavBar';
 
 const initState = {
     email: '',
+    location: '',
+    phone_number: '',
     username: '',
     password: ''
 }
@@ -25,12 +28,26 @@ const SignUp = ({signup, history}) => {
         // console.log(values)
     }
 
+    const cancelHandler = e => {
+        e.preventDefault();
+        history.push('/dashboard')
+    }
+
     return(
         <div>
+            <NavBar />
             <Form onSubmit = {submitHandler} >
                 <Form.Field>
                     <label>Email:</label>
                     <input type = 'text' placeholder = 'email' name = 'email' onChange = {changeHandler} value = {values.email} />
+                </Form.Field>
+                <Form.Field>
+                    <label>Location:</label>
+                    <input type = 'text' placeholder = 'location' name = 'location' onChange = {changeHandler} value = {values.location} />
+                </Form.Field>
+                <Form.Field>
+                    <label>Phone Number:</label>
+                    <input type = 'text' placeholder = 'phone number' name = 'phone_number' onChange = {changeHandler} value = {values.phone_number} />
                 </Form.Field>
                 <Form.Field>
                     <label>Username:</label>
@@ -41,6 +58,7 @@ const SignUp = ({signup, history}) => {
                     <input type = 'text' placeholder = 'password' name = 'password' onChange = {changeHandler} value = {values.password} />
                 </Form.Field>
                 <Button type = 'submit'>Sign Up</Button>
+                <Button onClick = {cancelHandler}>Cancel</Button>
             </Form>
         </div>
     )

@@ -69,7 +69,7 @@ export const signup = (userInfo, history) => dispatch => {
             history.push('/login')
         })
         .catch(err => {
-            dispatch({type: SIGNUP_FAILURE})
+            dispatch({type: SIGNUP_FAILURE, payload: err })
         })
 }
 
@@ -78,7 +78,7 @@ export const getAllRecipes = () => dispatch => {
     axiosWithAuth()
         .get('/user/recipes')
         .then(res => {
-            // console.log('res from get all recipes', res)
+            console.log('res from get all recipes', res.data)
             dispatch({type: FETCH_ALL_SUCCESS, payload: res.data})
         })
         .catch(err => {
@@ -86,6 +86,16 @@ export const getAllRecipes = () => dispatch => {
             dispatch({type: FETCH_ALL_FAILURE, payload: err.res})
         })
 }
+
+// export const getByType = () => dispatch => {
+//     dispatch({type: FETCH_TYPE_START})
+//     axiosWithAuth()
+//         .get('/user/recipes')
+//         .then(res => {
+//             const mealtype = res.data.filter
+//         })
+//         .catch()
+// }
 
 export const getOneRecipe = (id, history) => dispatch => {
     dispatch({type: FETCH_INDIVIDUAL_RECIPE_START})

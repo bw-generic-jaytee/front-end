@@ -25,7 +25,8 @@ const initState = {
     isFetching: false,
     recipe: {},
     chef_recipes: null, 
-    currentUser: {}
+    currentUser: {}, 
+    user: {}
 }
 
 export const reducer = (state = initState, {type , payload}) => {
@@ -35,21 +36,21 @@ export const reducer = (state = initState, {type , payload}) => {
                 ...state,
                 error: null,
                 isFetching: true,
-                currentUser: ''
+                user: ''
             }
         case SIGNUP_SUCCESS:
             return {
                 ...state,
                 error: null,
                 isFetching: false,
-                currentUser: payload
+                user: payload
             }
         case SIGNUP_FAILURE: 
             return {
                 ...state,
                 error: payload,
-                isFetching: true,
-                currentUser: ''
+                isFetching: false,
+                user: ''
             }
         case LOGIN_START: 
             return {
