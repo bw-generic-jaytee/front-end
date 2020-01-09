@@ -1,16 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
-import {Card, Image, Button} from 'semantic-ui-react';
+import {Card, Image, Button, Search} from 'semantic-ui-react';
 //components
 import NavBar from './NavBar';
 
 //actions
 import {getAllRecipes, getOneRecipe} from '../actions';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const HomePage = props => {
-    const [search, setSearch] = useState([]);
-    const [breakfastt, setBreakfast] = useState(false)
+    const [search, setSearch] = useState('');
     console.log(props);
 
     useEffect(() => {
@@ -21,18 +19,10 @@ const HomePage = props => {
         props.history.push(`/recipe/${id}`)
     }
 
-    const breakfastToggler = () => {
-        setBreakfast(!breakfastt)
-        console.log(breakfastt)
-    }
-
-
     return(
         <div className = 'home'>
             <NavBar />
             <h1>Welcome to Chef Port</h1>
-            <Button onClick = {breakfastToggler}>Breakfast</Button>
-
 
             <div className = 'recipes'>
                 {props.recipes && props.recipes.map(r => (
