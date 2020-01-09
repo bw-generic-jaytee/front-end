@@ -25,7 +25,10 @@ const HomePage = props => {
             <h1>Welcome to Chef Port</h1>
 
             <div className = 'recipes'>
-                {props.recipes && props.recipes.map(r => (
+
+                {props.recipes ? props.recipes.filter(r => r.meal_type === "Lunch").map(r => (
+                    
+
                     <Card key = {r.id}>
                         <Image src = {r.image_url} />
                         <Card.Content>
@@ -38,7 +41,7 @@ const HomePage = props => {
                         <Button onClick = {() => moreInfo(r.id)}>More Info</Button>
                     </Card>
                     
-                ))}
+                )) : <h2>Loading...</h2>}
             </div>
         </div>
     )
