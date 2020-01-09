@@ -16,6 +16,8 @@ const ChefsRecipe = props => {
         props.getOneRecipe(props.match.params.id);
     }, [props.getOneRecipe])
 
+    // const ingredientsArr = props.recipe.ingredients.split(", ")
+
 
     async function del(id) {
         // setTimeout(() => {
@@ -38,6 +40,10 @@ const ChefsRecipe = props => {
                 <h4>{props.recipe.description}</h4>
                 <h4>{props.recipe.meal_type}</h4>
                 <h4>{props.recipe.ingredients}</h4>
+                {/* {ingredientsArr.map(i => (
+                    <div>{i}</div>
+                ))} */}
+
                 <h4>{props.recipe.instructions}</h4>
                 <Button onClick = {() => del(props.recipe.id)}>Delete</Button>
                 <Button onClick = {() => editingRoute(props.recipe.id)} >Edit</Button>

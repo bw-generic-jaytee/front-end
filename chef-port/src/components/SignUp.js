@@ -3,11 +3,12 @@ import {Button, Form} from 'semantic-ui-react';
 import {connect} from 'react-redux';
 
 import {signup} from '../actions';
+import NavBar from './NavBar';
 
 const initState = {
     email: '',
     location: '',
-    phone: '',
+    phone_number: '',
     username: '',
     password: ''
 }
@@ -34,6 +35,7 @@ const SignUp = ({signup, history}) => {
 
     return(
         <div>
+            <NavBar />
             <Form onSubmit = {submitHandler} >
                 <Form.Field>
                     <label>Email:</label>
@@ -45,7 +47,7 @@ const SignUp = ({signup, history}) => {
                 </Form.Field>
                 <Form.Field>
                     <label>Phone Number:</label>
-                    <input type = 'text' placeholder = 'phone number' name = 'phone' onChange = {changeHandler} value = {values.phone} />
+                    <input type = 'text' placeholder = 'phone number' name = 'phone_number' onChange = {changeHandler} value = {values.phone_number} />
                 </Form.Field>
                 <Form.Field>
                     <label>Username:</label>
