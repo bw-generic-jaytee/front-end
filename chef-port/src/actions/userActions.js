@@ -88,7 +88,7 @@ export const getAllRecipes = () => dispatch => {
 export const getOneRecipe = (id, history) => dispatch => {
     dispatch({type: FETCH_INDIVIDUAL_RECIPE_START})
     axiosWithAuth()
-        .get(`/recipes/${id}`)
+        .get(`/user/recipes/${id}`)
         .then(res => {
             console.log('res from one recipe', res)
             dispatch({type: FETCH_INDIVIDUAL_RECIPE_SUCCESS, payload: res.data})

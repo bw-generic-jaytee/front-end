@@ -19,7 +19,7 @@ const HomePage = props => {
             <NavBar />
             <h1>Hello There</h1>
             <div className = 'recipes'>
-                {props.recipes && props.recipes.map(r => (
+                {props.recipes ? props.recipes.filter(r => r.meal_type === "Lunch").map(r => (
                     
                     <Card key = {r.id}>
                         <Image src = {r.image_url} />
@@ -32,7 +32,7 @@ const HomePage = props => {
                         </Card.Content>
                     </Card>
                     
-                ))}
+                )) : <h2>Loading...</h2>}
             </div>
         </div>
     )

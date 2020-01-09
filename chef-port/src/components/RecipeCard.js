@@ -8,7 +8,7 @@ import {getOneRecipe} from '../actions';
 const RecipeCard = props => {
 
     useEffect(() => {
-        props.getOneRecipe(props.recipe.id);
+        props.getOneRecipe(props.match.params.id);
     }, [props.getOneRecipe]);
 
     return(
