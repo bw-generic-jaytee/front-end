@@ -9,13 +9,35 @@ import NavBar from './NavBar';
 //actions
 import {getChefRecipes, deleteRecipe} from '../actions';
 
-const ChefDashboard = props => {
-    console.log('props from chef dashboard', props.chef_recipes)
-    console.log('one recipe', props)
+import {useLocalStorage} from '../hooks/useLocalStorage';
 
+
+
+
+const ChefDashboard = props => {
+    // console.log('props from chef dashboard', props.chef_recipes)
+    // console.log('one recipe', props.currentUser.chef.username);
+    const [message, setMessage] = useLocalStorage('something', '');
+    const [chef, setChef] = useLocalStorage('anythingelse', {})
+    // const [location, setLocation] = useLocalStorage('something', '')
+    // const [phone, setPhone] = useLocalStorage('something', '')
+
+  
     useEffect(() => {
         props.getChefRecipes()
+        if (props.currentUser.message !== undefined) {
+            setMessage(props.currentUser.message)
+        }
+        if (props.currentUser.chef !== undefined) {
+            setChef(props.currentUser.chef)
+        }
+
+        
     }, [])
+    // console.log('PLEASE WORK NOW!!!!!', username)
+
+
+    // console.log('please work!!!!!', message, username, location, phone, email);
 
     const addingRoute = e => {
         e.preventDefault();
@@ -37,11 +59,17 @@ const ChefDashboard = props => {
         <div>
             <NavBar />
             <div className = 'chef-info'>
-                <h1>Chef's Information will go here</h1>
+                <h2>{message}</h2>
+               
+                    <h2>{chef.username}</h2>
+                    <h4>{chef.location}</h4>
+                    <h4>{chef.email}</h4>
+                    <h6>{chef.phone}</h6>
+            
             </div>
             
             <div>
-                <h2>RECIPES</h2>
+                
                 <Button onClick = {addingRoute}>New Recipe</Button>
                 <div className = 'recipes'>    
                     {props.chef_recipes instanceof Array ? props.chef_recipes.map(cr => (
