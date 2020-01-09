@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 
 import {login} from '../actions';
 
+import NavBar from './NavBar';
+
 const initState = {
     username: '',
     password: ''
@@ -25,6 +27,7 @@ const LogIn = ({login, history}) => {
 
     return(
         <div>
+            <NavBar />
             <Form onSubmit = {submitHandler}>
                 <Form.Field>
                     <label>Username</label>
@@ -40,4 +43,12 @@ const LogIn = ({login, history}) => {
     )
 }
 
-export default connect(null, {login})(LogIn);
+const mapStateToProps = state => {
+    return {
+        error: state.error,
+        currentUser: state.currentUser
+    }
+    
+}
+
+export default connect(mapStateToProps, {login})(LogIn);

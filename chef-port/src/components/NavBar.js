@@ -6,9 +6,10 @@ const NavBar = () => {
 
     return(
         <div className = 'nav'>
-            <h1>Chef Portfolio</h1>
+            <Link to = '/'><h1>Chef Portfolio</h1></Link>
             <div className = 'links'>
-                <Link to = '/login' ><Button>Log In</Button></Link>
+                {localStorage.token ? <Link to = '/dashboard'><Button onClick = {() => {localStorage.clear()}}>Log Out</Button></Link>: <Link to = '/login' ><Button>Log In</Button></Link>}
+                {localStorage.token ? <Link to = '/'><Button>Home Page</Button></Link> : null}       
                 <Link to = '/signup'><Button>Sign Up</Button></Link>
                 <Link to = '/dashboard'><Button>Dashboard</Button></Link>
                 <a href = 'https://bw-chef-portfolio-jaytee.github.io/marketing-page/'>

@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
-import {Card, Image} from 'semantic-ui-react';
+import {Card, Image, Button, Search} from 'semantic-ui-react';
 //components
 import NavBar from './NavBar';
 
@@ -8,19 +8,27 @@ import NavBar from './NavBar';
 import {getAllRecipes, getOneRecipe} from '../actions';
 
 const HomePage = props => {
+    const [search, setSearch] = useState('');
     console.log(props);
 
     useEffect(() => {
         props.getAllRecipes();
     }, [props.getAllRecipes])
 
+    const moreInfo = (id) => {
+        props.history.push(`/recipe/${id}`)
+    }
+
     return(
         <div className = 'home'>
             <NavBar />
-            <h1>Hello There</h1>
+            <h1>Welcome to Chef Port</h1>
+
             <div className = 'recipes'>
+
                 {props.recipes ? props.recipes.filter(r => r.meal_type === "Lunch").map(r => (
                     
+
                     <Card key = {r.id}>
                         <Image src = {r.image_url} />
                         <Card.Content>
@@ -30,6 +38,7 @@ const HomePage = props => {
                         <Card.Content extra>
                             <p>{r.description}</p>
                         </Card.Content>
+                        <Button onClick = {() => moreInfo(r.id)}>More Info</Button>
                     </Card>
                     
                 )) : <h2>Loading...</h2>}
