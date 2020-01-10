@@ -74,7 +74,7 @@ export const signup = (userInfo, history) => dispatch => {
             history.push('/login')
         })
         .catch(err => {
-            dispatch({type: SIGNUP_FAILURE, payload: err })
+            dispatch({type: SIGNUP_FAILURE })
         })
 }
 
@@ -142,7 +142,7 @@ export const createRecipe = (chef, history) => dispatch => {
         })
         .catch(err => {
             // console.log('err from create recipe', err)
-            dispatch({type: CREATE_RECIPE_FAILURE, payload: err.res})
+            dispatch({type: CREATE_RECIPE_FAILURE})
         })
 }
 
@@ -167,10 +167,12 @@ export const editRecipe = (formValues, id, history) => dispatch => {
         .put(`/chef/recipes/${id}`, formValues)
         .then(res => {
             // console.log('res from edit action', res)
+            dispatch({type: EDIT_RECIPE_SUCCESS, payload: res})
             history.push('/dashboard')
         })
         .catch(err => {
             // console.log('err from edit action', err)
+            dispatch({type: EDIT_RECIPE_FAILURE})
         })
 }
 

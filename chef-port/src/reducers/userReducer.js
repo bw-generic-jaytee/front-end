@@ -16,7 +16,9 @@ import {
     FETCH_CHEF_RECIPES_FAILURE,
     DELETE_RECIPE_START,
     DELETE_RECIPE_SUCCESS,
-    DELETE_RECIPE_FAILURE
+    DELETE_RECIPE_FAILURE,
+    CREATE_RECIPE_FAILURE,
+    EDIT_RECIPE_FAILURE
 
 } from "../actions";
 
@@ -48,7 +50,7 @@ export const reducer = (state = initState, {type , payload}) => {
         case SIGNUP_FAILURE: 
             return {
                 ...state,
-                error: payload,
+                error: "Something went wrong with your signup",
                 isFetching: false,
                 user: ''
             }
@@ -148,6 +150,18 @@ export const reducer = (state = initState, {type , payload}) => {
                 ...state,
                 isFetching: false,
                 error: payload
+            }
+        case EDIT_RECIPE_FAILURE: 
+            return {
+                ...state,
+                isFetching: false,
+                error: "Be sure that all requirements are met!"
+            }   
+        case CREATE_RECIPE_FAILURE: 
+            return {
+                ...state,
+                isFetching: false,
+                error: "Be sure that all requirements are met!"
             }
         // case GET_ONE_START: 
         //     return {
