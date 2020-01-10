@@ -12,7 +12,7 @@ const RecipeCard = props => {
     }, [props.getOneRecipe]);
 
     return(
-        <div class="recipe-page">
+        <div className="recipe-page">
             <NavBar />
             <div className="recipe-container">
                 <h2>{props.recipe.name}</h2>
