@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Button, Form} from 'semantic-ui-react';
 import {connect} from 'react-redux';
 
@@ -11,8 +11,15 @@ const initState = {
     password: ''
 }
 
-const LogIn = ({login, history}) => {
+const LogIn = ({login, history, error}) => {
     const [user, setUser] = useState({...initState});
+    const [errorMessage, setErrorMessage] = useState('')
+
+    useEffect(() => {
+        if(error !== null) {
+            setErrorMessage(error)
+        }
+    }, [error])
 
     const changeHandler = e => {
         e.preventDefault();
@@ -28,6 +35,7 @@ const LogIn = ({login, history}) => {
     return(
         <div>
             <NavBar />
+            <p>{errorMessage}</p>
             <Form onSubmit = {submitHandler}>
                 <Form.Field>
                     <label>Username</label>

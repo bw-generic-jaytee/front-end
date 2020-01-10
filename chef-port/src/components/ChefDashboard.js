@@ -48,7 +48,7 @@ const ChefDashboard = props => {
             <div className = 'chef-info'>
                 <h2>{message}</h2>
                
-                    <h2>{chef.username}</h2>
+                    {/* <h2>{chef.username}</h2> */}
                     <h4>{chef.location}</h4>
                     <h4>{chef.email}</h4>
                     <h6>{chef.phone}</h6>

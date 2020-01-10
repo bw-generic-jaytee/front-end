@@ -9,12 +9,16 @@ import NavBar from './NavBar';
 
 
 const UpdateChef = props => {
+    const [errorMessage, setErrorMessage] = useState('')
 
     useEffect(() => {
         if (props.location.chef !== undefined ) {
             setValues(props.location.chef)
         } else {
             props.history.push('/dashboard')
+        }
+        if (props.error) {
+            setErrorMessage(props.error)
         }
     }, [])
 
@@ -52,6 +56,7 @@ const UpdateChef = props => {
     return(
         <div>
             <NavBar />
+            <p>{errorMessage}</p>
             <Form onSubmit = {submitHandler} >
                 <Form.Field>
                     <label>Email:</label>
@@ -89,7 +94,8 @@ const UpdateChef = props => {
 const mapStateToProps = state => {
     return {
         currentUser: state.currentUser,
-        recipes: state.recipes
+        recipes: state.recipes, 
+        error: state.error
     }
     
 }
