@@ -78,7 +78,7 @@ export const getAllRecipes = () => dispatch => {
     axiosWithAuth()
         .get('/user/recipes')
         .then(res => {
-            console.log('res from get all recipes', res.data)
+            // console.log('res from get all recipes', res.data)
             dispatch({type: FETCH_ALL_SUCCESS, payload: res.data})
         })
         .catch(err => {
@@ -102,12 +102,12 @@ export const getOneRecipe = (id, history) => dispatch => {
     axiosWithAuth()
         .get(`/user/recipes/${id}`)
         .then(res => {
-            console.log('res from one recipe', res)
+            // console.log('res from one recipe', res)
             dispatch({type: FETCH_INDIVIDUAL_RECIPE_SUCCESS, payload: res.data})
             // history.push(`/recipe/${id}`)
         })
         .catch(err => {
-            console.log('err from one recipe', err)
+            // console.log('err from one recipe', err)
             dispatch({type: FETCH_INDIVIDUAL_RECIPE_FAILURE, payload: err.res})
         })
 }
