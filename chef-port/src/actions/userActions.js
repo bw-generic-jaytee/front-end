@@ -45,6 +45,11 @@ export const GET_ONE_START = 'GET_ONE_START';
 export const GET_ONE_SUCCESS = 'GET_ONE_SUCCESS';
 export const GET_ONE_FAILURE = 'GET_ONE_FAILURE';
 
+//updates the users contact information
+export const UPDATE_USER_START = 'UPDATE_USER_START';
+export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
+export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE';
+
 export const login = (userInfo, history) => dispatch => {
     dispatch({type: LOGIN_START})
     axiosWithAuth()
@@ -146,12 +151,12 @@ export const deleteRecipe = (id, history) => dispatch => {
     axiosWithAuth()
         .delete(`/chef/recipes/${id}`)
         .then(res => {
-            console.log('delet res', res)
+            // console.log('delet res', res)
             dispatch({type: DELETE_RECIPE_SUCCESS, payload: res.data})
             history.push('/dashboard')
         })
         .catch(err => {
-            console.log('delete err', err)
+            // console.log('delete err', err)
             dispatch({type: DELETE_RECIPE_FAILURE, payload: err.res})
         })
 }
@@ -161,11 +166,24 @@ export const editRecipe = (formValues, id, history) => dispatch => {
     axiosWithAuth()
         .put(`/chef/recipes/${id}`, formValues)
         .then(res => {
-            console.log('res from edit action', res)
+            // console.log('res from edit action', res)
             history.push('/dashboard')
         })
         .catch(err => {
-            console.log('err from edit action', err)
+            // console.log('err from edit action', err)
         })
 }
 
+export const updateUser = (formValues, user) => dispatch => {
+    dispatch({type: UPDATE_USER_START})
+    axiosWithAuth()
+        .put('/chef/update', formValues)
+        .then(res => {
+            console.log('res from update action', res)
+            dispatch({type: UPDATE_USER_SUCCESS, payload: res.data})
+        })
+        .catch(err => {
+            console.log('err from update action', err)
+            dispatch({type: UPDATE_USER_FAILURE, payload: err.res})
+        })
+}
