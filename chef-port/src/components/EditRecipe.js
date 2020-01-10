@@ -2,11 +2,9 @@ import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {Form, Button} from 'semantic-ui-react';
 
-import NavBar from './NavBar';
-
 import {editRecipe} from '../actions';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-
+import NavBar from './NavBar';
 
  
 const EditRecipe = (props) => {
@@ -50,7 +48,10 @@ const EditRecipe = (props) => {
 
     return(
         <div>
-            <NavBar />
+            <div>
+                <NavBar />
+                </div>
+            <div className = 'container'>
             <p>{errorMessage}</p>
             <Form onSubmit = {submitHandler}>
                 <Form.Field>
@@ -86,6 +87,7 @@ const EditRecipe = (props) => {
                 <Button type = 'submit'>Submit</Button>
                 <Button onClick = {cancelHandler}>Cancel</Button>
             </Form>
+        </div>
         </div>
     )
 }

@@ -3,7 +3,6 @@ import {Button, Form} from 'semantic-ui-react';
 import {connect} from 'react-redux';
 
 import {login} from '../actions';
-
 import NavBar from './NavBar';
 
 const initState = {
@@ -34,7 +33,10 @@ const LogIn = ({login, history, error}) => {
 
     return(
         <div>
-            <NavBar />
+            <div>
+                <NavBar />
+                </div>
+            <div className = 'container'>
             <p>{errorMessage}</p>
             <Form onSubmit = {submitHandler}>
                 <Form.Field>
@@ -47,6 +49,7 @@ const LogIn = ({login, history, error}) => {
                 </Form.Field>
                 <Button type = 'submit'>Log In</Button>
             </Form>
+        </div>
         </div>
     )
 }

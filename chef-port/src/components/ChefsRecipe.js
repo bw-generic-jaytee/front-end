@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react';
 import {connect} from 'react-redux';
 import {Button} from 'semantic-ui-react';
 
-import NavBar from './NavBar';
-
 import {getOneRecipe, deleteRecipe} from '../actions';
 
-
+import NavBar from './NavBar';
 
 const ChefsRecipe = props => {
     const [editing, setEditing] = useState(false);
@@ -32,8 +30,10 @@ const ChefsRecipe = props => {
 
     return(
         <div className = 'recipe-page'>
-            <NavBar />
-            <div className = 'recipe-container'>
+            <div>
+                <NavBar />
+                </div>
+            <div className = 'container'>
                 <h2>{props.recipe.name}</h2>
                 <img src = {props.recipe.image_url} alt = {props.recipe.name} />
                 <h3>By: {props.recipe.chef}</h3>

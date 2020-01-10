@@ -38,6 +38,7 @@
 }
 
 .nav {
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
   padding: 2% 1%;
@@ -45,9 +46,50 @@
   background: yellowgreen;
 }
 
+.container {
+  width: 98%;
+  margin: 1%;
+}
+
+/* .recipes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+} */
+
+.home {
+  display: flex;
+  flex-direction: column;
+}
+
 .recipes {
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
-  /* cursor: pointer; */
+  justify-content: space-around;
+  height: 300px;
+  width: 100%;
+  margin-top: 5%;
+}
+
+.recipes .ui-card {
+  padding: 2%;
+}
+
+img {
+  width: 290px;
+  height: 193px;
+  object-fit: contain;
+  background: grey;
+}
+
+.search {
+  display: flex;
+  height: 15%;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.search{
+  padding: 2% 5% ;
+  background-color: lightgray;
 }

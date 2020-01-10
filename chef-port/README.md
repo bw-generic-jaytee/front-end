@@ -1,68 +1,35 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Welcome to Chef Port!
 
-## Available Scripts
+This front end contribution to this project offers a one-stop shop for any chef that wants create their own portfolio, and for anyone that wants to find new recipes or new chefs
 
-In the project directory, you can run:
+# Deployed Site: 
 
-### `yarn start`
+https://front-end-delta-puce.now.sh/
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Features: 
+- [] Chefs can create an account, choose to have contact information, create, edit, and delete recipes, and have them available for the public to see
+- [] Anyone can come and see all of the recipes from the chefs that have portfolios on our site, they can search for specific recipes, ingredients, meal types, and chefs
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+# Future Features: 
 
-### `yarn test`
+- [] Allow chefs to choose whether or not to publish a recipe
+- [] Allow public users to save recipes they enjoy
+- [] Allow public users to provide feedback on recipes
+- [] Create another user that is looking for chefs to employ
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Packages:
 
-### `yarn build`
+We chose to use Yarn
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Dependencies: 
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- [] "axios": "^0.19.0",
+- [] "react": "^16.12.0",
+- [] "react-dom": "^16.12.0",
+- [] "react-redux": "^7.1.3",
+- [] "react-router-dom": "^5.1.2",
+- [] "react-scripts": "3.3.0",
+- [] "redux": "^4.0.5",
+- [] "redux-logger": "^3.0.6",
+- [] "redux-thunk": "^2.3.0",
+- [] "semantic-ui-react": "^0.88.2"

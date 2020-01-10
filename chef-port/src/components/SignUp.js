@@ -2,8 +2,9 @@ import React, {useState, useEffect} from 'react';
 import {Button, Form} from 'semantic-ui-react';
 import {connect} from 'react-redux';
 
-import {signup} from '../actions';
 import NavBar from './NavBar';
+
+import {signup} from '../actions';
 
 const initState = {
     email: '',
@@ -44,7 +45,10 @@ const SignUp = ({signup, history, error}) => {
 
     return(
         <div>
-            <NavBar />
+            <div>
+                <NavBar />
+                </div>
+            <div className = 'container'>
             <p>{errorMessage}</p>
             <h4>Don't worry, ou can update your contact information (the optional fields) later!</h4>
 
@@ -83,6 +87,7 @@ const SignUp = ({signup, history, error}) => {
                 <Button type = 'submit'>Sign Up</Button>
                 <Button onClick = {cancelHandler}>Cancel</Button>
             </Form>
+        </div>
         </div>
     )
 }

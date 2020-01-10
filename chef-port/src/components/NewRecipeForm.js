@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {Form, Button} from 'semantic-ui-react';
 
-import {createRecipe} from '../actions';
-
 import NavBar from './NavBar';
+
+import {createRecipe} from '../actions';
 
 const initState = {
     name: '',
@@ -38,7 +38,10 @@ const NewRecipeForm = ({createRecipe, history, error}) => {
 
     return(
         <div>
-            <NavBar />
+            <div>
+                <NavBar />
+                </div>
+            <div className = 'container'>
             <p>{errorMessage}</p>
             <Form onSubmit = {submitHandler}>
                 <Form.Field>
@@ -73,6 +76,7 @@ const NewRecipeForm = ({createRecipe, history, error}) => {
                 </Form.Field>
                 <Button type = 'submit'>Submit</Button>
             </Form>
+        </div>
         </div>
     )
 }

@@ -3,7 +3,6 @@ import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {Card, Image, Button} from 'semantic-ui-react';
 
-//components
 import NavBar from './NavBar';
 
 import {getOneRecipe, getAllRecipes} from '../actions';
@@ -29,29 +28,33 @@ const ChefPortPage = props => {
 
     return(
         <div>
-            <NavBar />
-            <h2>{cheff.chef}</h2>
-            <h4>{cheff.location}</h4>
-            <h4>{cheff.phone_number}</h4>
-            <h4>{cheff.email}</h4>
-            <div className = 'recipes'>
-                {props.recipes ? props.recipes.filter(r => r.chef.includes(cheff.chef)).map(r => (
+            <div>
+                <NavBar />
+                </div>
+            <div className = 'container'>
+                <h2>{cheff.chef}</h2>
+                <h4>{cheff.location}</h4>
+                <h4>{cheff.phone_number}</h4>
+                <h4>{cheff.email}</h4>
+                <div className = 'recipes'>
+                    {props.recipes ? props.recipes.filter(r => r.chef.includes(cheff.chef)).map(r => (
 
-                <Card key = {r.id}>
-                    <Image src = {r.image_url} />
-                    <Card.Content>
-                        <Card.Header>{r.name}</Card.Header>
-                        <Card.Description>{r.chef}</Card.Description>
-                    </Card.Content>
-                    <Card.Content extra>
-                        <p>{r.description}</p>
-                    </Card.Content>
-                    <Button onClick = {() => moreInfo(r.id)}>More Info</Button>
-                </Card>
+                    <Card key = {r.id}>
+                        {/* <Image src = {r.image_url} /> */}
+                        <img src = {r.image_url} alt = {r.id} />
+                        <Card.Content>
+                            <Card.Header>{r.name}</Card.Header>
+                            <Card.Description>{r.chef}</Card.Description>
+                        </Card.Content>
+                        <Card.Content extra>
+                            <p>{r.description}</p>
+                        </Card.Content>
+                        <Button onClick = {() => moreInfo(r.id)}>More Info</Button>
+                    </Card>
 
-                )) : <h2>Loading...</h2>}
+                    )) : <h2>Loading...</h2>}
+                </div>
             </div>
-            
         </div>
     )
 }
