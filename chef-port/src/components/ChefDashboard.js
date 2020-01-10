@@ -12,11 +12,10 @@ import {getChefRecipes, deleteRecipe} from '../actions';
 import {useLocalStorage} from '../hooks/useLocalStorage';
 
 
-
-
 const ChefDashboard = props => {
     const [message, setMessage] = useLocalStorage('something', '');
     const [chef, setChef] = useLocalStorage('anythingelse', {})
+    console.log(props)
   
     useEffect(() => {
         props.getChefRecipes()
@@ -29,6 +28,10 @@ const ChefDashboard = props => {
 
         
     }, [])
+
+    const updateUser = (chef) => {
+        props.history.push('/edituser')
+    }
 
     const addingRoute = e => {
         e.preventDefault();
@@ -49,7 +52,18 @@ const ChefDashboard = props => {
                     <h4>{chef.location}</h4>
                     <h4>{chef.email}</h4>
                     <h6>{chef.phone}</h6>
-            
+
+                    {/* <Button onClick = {() => updateUser(chef)} >Update Contact Information</Button> */}
+
+                    <Link to = {{
+                        pathname: '/edituser', 
+                        chef: {
+                            username: `${chef.username}`,
+                            location: `${chef.location}`,
+                            email: `${chef.email}`,
+                            phone_number: `${chef.phone}`
+                    }}}  ><Button>Update Contact Information</Button></Link>
+
             </div>
             
             <div>

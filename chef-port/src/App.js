@@ -13,6 +13,7 @@ import NewRecipeForm from './components/NewRecipeForm';
 import EditRecipe from './components/EditRecipe';
 import ChefsRecipe from './components/ChefsRecipe';
 import ChefPortPage from './components/ChefPortPage';
+import UpdateChef from './components/UpdateChef';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <PrivateRoute path = '/addrecipe' component = {NewRecipeForm} />
       <PrivateRoute path = '/editrecipe/:id' component = {EditRecipe} />
       <PrivateRoute path = '/dashboard/recipe/:id' component = {ChefsRecipe} />
+      <PrivateRoute path = '/edituser' component = {UpdateChef} />
     </div>
 
   </Router>
