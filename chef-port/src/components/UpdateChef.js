@@ -3,10 +3,9 @@ import {Button, Form} from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
-import {updateUser, getAllRecipes} from '../actions';
 import NavBar from './NavBar';
 
-
+import {updateUser, getAllRecipes} from '../actions';
 
 const UpdateChef = props => {
     const [errorMessage, setErrorMessage] = useState('')
@@ -55,7 +54,10 @@ const UpdateChef = props => {
 
     return(
         <div>
-            <NavBar />
+            <div>
+                <NavBar />
+                </div>
+            <div className = 'container'>
             <p>{errorMessage}</p>
             <Form onSubmit = {submitHandler} >
                 <Form.Field>
@@ -86,6 +88,7 @@ const UpdateChef = props => {
                 <Button type = 'submit'>Update</Button>
                 <Button onClick = {cancelHandler}>Cancel</Button>
             </Form>
+        </div>
         </div>
     )
 

@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {Card, Image} from 'semantic-ui-react';
 import {connect} from 'react-redux';
+
 import NavBar from './NavBar';
 
 import {getOneRecipe} from '../actions';
@@ -12,8 +13,11 @@ const RecipeCard = props => {
     }, [props.getOneRecipe]);
 
     return(
-        <div className="recipe-page">
-            <NavBar />
+        <div>
+            <div>
+                <NavBar />
+                </div>
+            <div className = 'container'>
             <div className="recipe-container">
                 <h2>{props.recipe.name}</h2>
                     <img src = {props.recipe.image_url} alt = {props.recipe.name} />
@@ -23,6 +27,7 @@ const RecipeCard = props => {
                     <h4>{props.recipe.ingredients}</h4>
                     <h4>{props.recipe.instructions}</h4>
                 </div>
+        </div>
         </div>
     )
 }

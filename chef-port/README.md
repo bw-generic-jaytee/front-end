@@ -10,6 +10,13 @@ https://front-end-delta-puce.now.sh/
 - [] Chefs can create an account, choose to have contact information, create, edit, and delete recipes, and have them available for the public to see
 - [] Anyone can come and see all of the recipes from the chefs that have portfolios on our site, they can search for specific recipes, ingredients, meal types, and chefs
 
+# Future Features: 
+
+- [] Allow chefs to choose whether or not to publish a recipe
+- [] Allow public users to save recipes they enjoy
+- [] Allow public users to provide feedback on recipes
+- [] Create another user that is looking for chefs to employ
+
 # Packages:
 
 We chose to use Yarn

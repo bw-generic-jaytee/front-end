@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {Card, Image, Button, Dropdown, Input} from 'semantic-ui-react';
-//components
+
 import NavBar from './NavBar';
 
 //actions
@@ -47,17 +47,29 @@ const HomePage = props => {
 
     return(
         <div className = 'home'>
-            <NavBar />
-            <h1>Welcome to Chef Port</h1>
-                <Dropdown placeholder = 'Meal Type' text = {DropdownOptions.text} options = {DropdownOptions} onChange = {dropdownHandler} value = {type} selection />
-                <Input onChange = {searchHandler} value = {search} />
+            <div>
+                <NavBar />
+                </div>
+            <div className = 'container'>
+            <div className = 'search' >
+                <div>
+                    <h4>Find Meal By Type:</h4>
+                    <Dropdown placeholder = 'Meal Type' text = {DropdownOptions.text} options = {DropdownOptions} onChange = {dropdownHandler} value = {type} selection />
+                </div>
+                <div>
+                    <h4>Search By Recipe, Ingredient, Chef, and Description:</h4>
+                    <Input placeholder = 'Search' onChange = {searchHandler} value = {search} />
+                </div>
+            </div>
+           
 
-            <div className = 'recipes'>
+            <div className = 'recipes' >
 
                     {props.recipes ? props.recipes.filter(r => r.meal_type.includes(type)).filter(s => s.name.includes(search) || s.description.includes(search) || s.ingredients.includes(search) || s.chef.includes(search) ).map(r => (
 
-                    <Card key = {r.id}>
-                        <Image src = {r.image_url} />
+                    <Card key = {r.id} >
+                        {/* <Image src = {r.image_url} size = 'medium' /> */}
+                        <img src = {r.image_url} alt = {r.id}/>
                         <Card.Content>
                             <Card.Header>{r.name}</Card.Header>
                             <Card.Description><Button onClick = {() => chefPage(r.id)}>{r.chef}</Button></Card.Description>
@@ -70,6 +82,7 @@ const HomePage = props => {
                     
                 )) : <h2>Loading...</h2>}
             </div>
+        </div>
         </div>
     )
 }
