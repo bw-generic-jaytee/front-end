@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {Card, Image, Button, Dropdown, Input} from 'semantic-ui-react';
 //components
 import NavBar from './NavBar';
@@ -36,6 +37,10 @@ const HomePage = props => {
         props.getAllRecipes();
     }, [props.getAllRecipes])
 
+    const chefPage = (id) => {
+        props.history.push(`/chef/${id}`)
+    }
+
     const moreInfo = (id) => {
         props.history.push(`/recipe/${id}`)
     }
@@ -49,13 +54,13 @@ const HomePage = props => {
 
             <div className = 'recipes'>
 
-                    {props.recipes ? props.recipes.filter(r => r.meal_type.includes(type)).filter(s => s.name.includes(search) || s.description.includes(search) || s.ingredients.includes(search) ).map(r => (
+                    {props.recipes ? props.recipes.filter(r => r.meal_type.includes(type)).filter(s => s.name.includes(search) || s.description.includes(search) || s.ingredients.includes(search) || s.chef.includes(search) ).map(r => (
 
                     <Card key = {r.id}>
                         <Image src = {r.image_url} />
                         <Card.Content>
                             <Card.Header>{r.name}</Card.Header>
-                            <Card.Description>{r.chef}</Card.Description>
+                            <Card.Description><Button onClick = {() => chefPage(r.id)}>{r.chef}</Button></Card.Description>
                         </Card.Content>
                         <Card.Content extra>
                             <p>{r.description}</p>

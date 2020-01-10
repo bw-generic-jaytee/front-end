@@ -12,6 +12,7 @@ import RecipeCard from './components/RecipeCard';
 import NewRecipeForm from './components/NewRecipeForm';
 import EditRecipe from './components/EditRecipe';
 import ChefsRecipe from './components/ChefsRecipe';
+import ChefPortPage from './components/ChefPortPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
     <div className="App">
       <Route exact path = '/' component = {HomePage} />
       <Route path = '/recipe/:id' component = {RecipeCard} />
+      <Route path = '/chef/:id' component = {ChefPortPage} />
       <Route path = '/login' component = {LogIn} />
       <Route path = '/signup' component = {SignUp} />
       <PrivateRoute exact path = '/dashboard' component = {ChefDashboard} />

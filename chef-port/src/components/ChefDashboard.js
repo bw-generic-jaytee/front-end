@@ -15,13 +15,8 @@ import {useLocalStorage} from '../hooks/useLocalStorage';
 
 
 const ChefDashboard = props => {
-    // console.log('props from chef dashboard', props.chef_recipes)
-    // console.log('one recipe', props.currentUser.chef.username);
     const [message, setMessage] = useLocalStorage('something', '');
     const [chef, setChef] = useLocalStorage('anythingelse', {})
-    // const [location, setLocation] = useLocalStorage('something', '')
-    // const [phone, setPhone] = useLocalStorage('something', '')
-
   
     useEffect(() => {
         props.getChefRecipes()
@@ -34,22 +29,11 @@ const ChefDashboard = props => {
 
         
     }, [])
-    // console.log('PLEASE WORK NOW!!!!!', username)
-
-
-    // console.log('please work!!!!!', message, username, location, phone, email);
 
     const addingRoute = e => {
         e.preventDefault();
         props.history.push('/addrecipe')
     }
-    
-    // const editingRoute = (id) => {
-    //     // e.preventDefault();
-    //     // getOne();
-    //     props.history.push(`/editrecipe/${id}`);
-    //     console.log(id)
-    // }
 
     const moreInfo = (id) => {
         props.history.push(`/dashboard/recipe/${id}`)
